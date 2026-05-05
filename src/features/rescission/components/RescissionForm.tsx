@@ -39,6 +39,7 @@ export function RescissionForm() {
             terminationDate: String(formData.get("terminationDate") ?? ""),
             terminationReason: String(formData.get("terminationReason") ?? ""),
             noticeType: String(formData.get("noticeType") ?? ""),
+            currentVacationPeriodStartDate: String(formData.get("currentVacationPeriodStartDate") ?? ""),
         });
 
         setErrors(validation.errors);
@@ -113,6 +114,28 @@ export function RescissionForm() {
 
            {errors.admissionDate ? (
             <p className="text-sm text-red-300">{errors.admissionDate}</p>
+            ) : null}
+        </div>
+        
+        <div className="grid gap-2">
+            <label
+                htmlFor="currentVacationPeriodStartDate"
+                className="text-sm font-medium text-slate-200"
+            >
+                Início do período aquisitivo atual
+            </label>
+
+            <input
+                id="currentVacationPeriodStartDate"
+                name="currentVacationPeriodStartDate"
+                type="date"
+                className="rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-slate-100 outline-none transition focus:border-cyan-400"
+            />
+
+            {errors.currentVacationPeriodStartDate ? (
+                <p className="text-sm text-red-300">
+                {errors.currentVacationPeriodStartDate}
+                </p>
             ) : null}
         </div>
 

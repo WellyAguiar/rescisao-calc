@@ -11,6 +11,7 @@ type RawRescissionFormData = {
   terminationDate: string;
   terminationReason: string;
   noticeType: string;
+  currentVacationPeriodStartDate: string;
 };
 
 type ValidationResult =
@@ -50,6 +51,29 @@ export function validateRescissionForm(
     errors.terminationDate = "Informe a data de desligamento.";
   }
 
+  if (!rawData.currentVacationPeriodStartDate) {
+    errors.currentVacationPeriodStartDate =
+    "Informe o início do período aquisitivo atual.";
+}
+
+    if (
+  rawData.currentVacationPeriodStartDate &&
+  rawData.admissionDate &&
+  rawData.currentVacationPeriodStartDate < rawData.admissionDate
+) {
+  errors.currentVacationPeriodStartDate =
+    "O período aquisitivo não pode começar antes da admissão.";
+}
+
+if (
+  rawData.currentVacationPeriodStartDate &&
+  rawData.terminationDate &&
+  rawData.currentVacationPeriodStartDate > rawData.terminationDate
+) {
+  errors.currentVacationPeriodStartDate =
+    "O período aquisitivo deve começar antes do desligamento.";
+}
+
   if (
     rawData.admissionDate &&
     rawData.terminationDate &&
@@ -81,6 +105,7 @@ export function validateRescissionForm(
       salary: rawData.salary,
       admissionDate: rawData.admissionDate,
       terminationDate: rawData.terminationDate,
+      currentVacationPeriodStartDate: rawData.currentVacationPeriodStartDate,
       terminationReason: rawData.terminationReason as TerminationReason,
       noticeType: rawData.noticeType as NoticeType,
     },

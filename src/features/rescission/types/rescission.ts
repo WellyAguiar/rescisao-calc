@@ -9,6 +9,7 @@ export type RescissionFormData = {
   salary: number;
   admissionDate: string;
   terminationDate: string;
+  currentVacationPeriodStartDate: string;
   terminationReason: TerminationReason;
   noticeType: NoticeType;
 };
@@ -26,6 +27,7 @@ export type RescissionFormErrors = {
   salary?: string;
   admissionDate?: string;
   terminationDate?: string;
+  currentVacationPeriodStartDate?: string;
   terminationReason?: string;
   noticeType?: string;
 };
