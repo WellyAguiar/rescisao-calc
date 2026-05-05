@@ -7,7 +7,7 @@ import type {
     RescissionFormErrors 
 } from "../types/rescission";
 import { validateRescissionForm } from "../validations/validateRescissionForm";
-
+import { calculateSalaryBalance } from "../calculations/calculateSalaryBalance";
 
 const terminationReasonOptions: { 
     value: TerminationReason; 
@@ -47,7 +47,15 @@ export function RescissionForm() {
             return;
         }
 
-        console.log(validation.data);
+       const salaryBalance = calculateSalaryBalance({
+            salary: validation.data.salary,
+            terminationDate: validation.data.terminationDate,
+        });
+
+        console.log({
+            formData: validation.data,
+            salaryBalance,
+        });
     }
 
   return (
