@@ -36,4 +36,25 @@ describe("calculateRescission", () => {
     expect(result.noticePay).toBe(0);
     expect(result.total).toBe(3750);
   });
+
+    it("should calculate only salary balance for dismissal with cause", () => {
+        const result = calculateRescission({
+            salary: 3000,
+            admissionDate: "2022-01-01",
+            terminationDate: "2025-03-20",
+            currentVacationPeriodStartDate: "2025-01-01",
+            terminationReason: "dismissal_with_cause",
+            noticeType: "not_applicable",
+     });
+
+        expect(result).toEqual({
+            salaryBalance: 2000,
+            thirteenthSalary: 0,
+            vacationPay: 0,
+            vacationBonus: 0,
+            noticePay: 0,
+            total: 2000,
+        });
+    });
+
 });

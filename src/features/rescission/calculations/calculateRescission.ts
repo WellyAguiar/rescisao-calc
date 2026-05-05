@@ -17,21 +17,27 @@ export function calculateRescission(
         terminationDate: data.terminationDate,
     });
 
-    const thirteenthSalary = calculateThirteenthSalary({
+    const shouldPayProportionalRights = 
+        data.terminationReason !== "dismissal_with_cause"
+
+    const thirteenthSalary = shouldPayProportionalRights 
+    ? calculateThirteenthSalary({
         salary: data.salary,
         admissionDate: data.admissionDate,
         terminationDate: data.terminationDate,
-    });
+    }) : 0;
 
-    const vacationPay = calculateVacationPay({
+    const vacationPay =  shouldPayProportionalRights 
+    ? calculateVacationPay({
         salary: data.salary,
         currentVacationPeriodStartDate: data.currentVacationPeriodStartDate,
         terminationDate: data.terminationDate,
-    });
+    }) : 0;
 
-    const vacationBonus = calculateVacationBonus({
+    const vacationBonus = shouldPayProportionalRights 
+    ?calculateVacationBonus({
         vacationPay,
-    });
+    }) : 0;
 
     const noticePay = calculateNoticePay({
         salary: data.salary,
