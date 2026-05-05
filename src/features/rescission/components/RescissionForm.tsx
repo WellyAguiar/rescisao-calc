@@ -1,15 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import type { NoticeType, TerminationReason } from "../types/rescission";
+import type { 
+    NoticeType, 
+    TerminationReason,
+    RescissionFormErrors 
+} from "../types/rescission";
+import { validateRescissionForm } from "../validations/validateRescissionForm";
 
-type FormErrors = {
-    salary?: string;
-    admissionDate?: string;
-    terminationDate?: string;
-    terminationReason?: string;
-    noticeType?: string;
-}
 
 const terminationReasonOptions: { 
     value: TerminationReason; 
@@ -28,59 +26,28 @@ const noticeTypeOptions: {
 ];
 
 export function RescissionForm() {
-    const [errors, setErrors] = useState<FormErrors>({});
+    const [errors, setErrors] = useState<RescissionFormErrors>({});
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
         const formData = new FormData(event.currentTarget);
 
-        const salary = Number(formData.get("salary"));
-        const admissionDate = String(formData.get("admissionDate") ?? "");
-        const terminationDate = String(formData.get("terminationDate") ?? "");
-        const terminationReason = String(formData.get("terminationReason") ?? "");
-        const noticeType = String(formData.get("noticeType") ?? "");
+        const validation = validateRescissionForm({
+            salary: Number(formData.get("salary")),
+            admissionDate: String(formData.get("admissionDate") ?? ""),
+            terminationDate: String(formData.get("terminationDate") ?? ""),
+            terminationReason: String(formData.get("terminationReason") ?? ""),
+            noticeType: String(formData.get("noticeType") ?? ""),
+        });
 
-        const newErrors: FormErrors = {};
+        setErrors(validation.errors);
 
-        if (!salary || salary <= 0) {
-            newErrors.salary = "Informe um salário maior que zero.";
-        }
-
-        if (!admissionDate) {
-            newErrors.admissionDate = "Informe a data de admissão.";
-        }
-
-        if (!terminationDate) {
-            newErrors.terminationDate = "Informe a data de desligamento.";
-        }
-
-        if (admissionDate && terminationDate && admissionDate > terminationDate) {
-            newErrors.terminationDate =
-            "A data de desligamento deve ser posterior à admissão.";
-        }
-
-        if (!terminationReason) {
-            newErrors.terminationReason = "Selecione o motivo da rescisão.";
-        }
-
-        if (!noticeType) {
-            newErrors.noticeType = "Selecione o tipo de aviso prévio.";
-        }
-
-        setErrors(newErrors);
-
-        if (Object.keys(newErrors).length > 0) {
+        if (!validation.isValid) {
             return;
         }
 
-        console.log({
-            salary,
-            admissionDate,
-            terminationDate,
-            terminationReason: terminationReason as TerminationReason,
-            noticeType: noticeType as NoticeType,
-        });
+        console.log(validation.data);
     }
 
   return (

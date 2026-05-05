@@ -21,3 +21,11 @@ export type RescissionCalculationResult = {
   noticePay: number;
   total: number;
 };
+
+export type RescissionFormErrors = {
+  salary?: string;
+  admissionDate?: string;
+  terminationDate?: string;
+  terminationReason?: string;
+  noticeType?: string;
+};
