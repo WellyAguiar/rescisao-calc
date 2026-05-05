@@ -1,4 +1,15 @@
+"use client";
+
+import { useState } from "react";
 import type { NoticeType, TerminationReason } from "../types/rescission";
+
+type FormErrors = {
+    salary?: string;
+    admissionDate?: string;
+    terminationDate?: string;
+    terminationReason?: string;
+    noticeType?: string;
+}
 
 const terminationReasonOptions: { 
     value: TerminationReason; 
@@ -17,8 +28,68 @@ const noticeTypeOptions: {
 ];
 
 export function RescissionForm() {
+    const [errors, setErrors] = useState<FormErrors>({});
+
+    function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+
+        const formData = new FormData(event.currentTarget);
+
+        const salary = Number(formData.get("salary"));
+        const admissionDate = String(formData.get("admissionDate") ?? "");
+        const terminationDate = String(formData.get("terminationDate") ?? "");
+        const terminationReason = String(formData.get("terminationReason") ?? "");
+        const noticeType = String(formData.get("noticeType") ?? "");
+
+        const newErrors: FormErrors = {};
+
+        if (!salary || salary <= 0) {
+            newErrors.salary = "Informe um salário maior que zero.";
+        }
+
+        if (!admissionDate) {
+            newErrors.admissionDate = "Informe a data de admissão.";
+        }
+
+        if (!terminationDate) {
+            newErrors.terminationDate = "Informe a data de desligamento.";
+        }
+
+        if (admissionDate && terminationDate && admissionDate > terminationDate) {
+            newErrors.terminationDate =
+            "A data de desligamento deve ser posterior à admissão.";
+        }
+
+        if (!terminationReason) {
+            newErrors.terminationReason = "Selecione o motivo da rescisão.";
+        }
+
+        if (!noticeType) {
+            newErrors.noticeType = "Selecione o tipo de aviso prévio.";
+        }
+
+        setErrors(newErrors);
+
+        if (Object.keys(newErrors).length > 0) {
+            return;
+        }
+
+        console.log({
+            salary,
+            admissionDate,
+            terminationDate,
+            terminationReason: terminationReason as TerminationReason,
+            noticeType: noticeType as NoticeType,
+        });
+    }
+
   return (
-    <form className="rounded-2xl border border-slate-800 bg-slate-900/70 p-6 shadow-lg">
+    <form 
+        onSubmit={handleSubmit}
+        noValidate
+        className="rounded-2xl border border-slate-800 bg-slate-900/70 p-6 shadow-lg"
+    >
+
       <div className="space-y-2">
         <h2 className="text-2xl font-semibold text-slate-100">
           Dados da rescisão
@@ -44,6 +115,10 @@ export function RescissionForm() {
             placeholder="Ex: 2500.00"
             className="rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-slate-100 outline-none transition focus:border-cyan-400"
           />
+
+           {errors.salary ? (
+             <p className="text-sm text-red-300">{errors.salary}</p>
+            ) : null}
         </div>
 
         <div className="grid gap-2">
@@ -60,6 +135,10 @@ export function RescissionForm() {
             type="date"
             className="rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-slate-100 outline-none transition focus:border-cyan-400"
           />
+
+           {errors.admissionDate ? (
+            <p className="text-sm text-red-300">{errors.admissionDate}</p>
+            ) : null}
         </div>
 
         <div className="grid gap-2">
@@ -76,6 +155,9 @@ export function RescissionForm() {
             type="date"
             className="rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-slate-100 outline-none transition focus:border-cyan-400"
           />
+           {errors.terminationDate ? (
+             <p className="text-sm text-red-300">{errors.terminationDate}</p>
+            ) : null}
         </div>
 
         <div className="grid gap-2">
@@ -102,6 +184,11 @@ export function RescissionForm() {
                 </option>
             ))}
           </select>
+
+          {errors.noticeType ? (
+            <p className="text-sm text-red-300">{errors.noticeType}</p>
+        ) : null}
+
         </div>
 
         <div className="grid gap-2">
