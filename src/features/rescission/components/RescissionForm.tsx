@@ -1,3 +1,21 @@
+import type { NoticeType, TerminationReason } from "../types/rescission";
+
+const terminationReasonOptions: { 
+    value: TerminationReason; 
+    label: string }[] = [
+  { value: "dismissal_without_cause", label: "Demissão sem justa causa" },
+  { value: "resignation", label: "Pedido de demissão" },
+  { value: "dismissal_with_cause", label: "Demissão com justa causa" }
+];
+
+const noticeTypeOptions: { 
+    value: NoticeType; 
+    label: string }[] = [
+  { value: "worked", label: "Trabalhado" },
+  { value: "indemnified", label: "Indenizado" },
+  { value: "not_applicable", label: "Não aplicável" }
+];
+
 export function RescissionForm() {
   return (
     <form className="rounded-2xl border border-slate-800 bg-slate-900/70 p-6 shadow-lg">
@@ -77,11 +95,12 @@ export function RescissionForm() {
             <option value="" disabled>
               Selecione uma opção
             </option>
-            <option value="dismissal_without_cause">
-              Demissão sem justa causa
-            </option>
-            <option value="resignation">Pedido de demissão</option>
-            <option value="dismissal_with_cause">Demissão com justa causa</option>
+
+            {terminationReasonOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                    {option.label}
+                </option>
+            ))}
           </select>
         </div>
 
@@ -102,9 +121,11 @@ export function RescissionForm() {
             <option value="" disabled>
               Selecione uma opção
             </option>
-            <option value="worked">Trabalhado</option>
-            <option value="indemnified">Indenizado</option>
-            <option value="not_applicable">Não aplicável</option>
+            {noticeTypeOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
           </select>
         </div>
 
