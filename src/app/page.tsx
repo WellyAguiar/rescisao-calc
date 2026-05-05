@@ -1,10 +1,12 @@
+import { RescissionForm } from "@/features/rescission/components/RescissionForm";
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-slate-950 px-6 py-10 text-slate-100">
       <section className="mx-auto flex max-w-4xl flex-col gap-8">
         <div className="space-y-4">
           <p className="text-sm font-medium uppercase tracking-[0.3em] text-cyan-400">
-            Projeto de portfólio
+            Quanto vou receber?
           </p>
 
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
@@ -16,6 +18,8 @@ export default function Home() {
             datas do contrato, motivo do desligamento e tipo de aviso prévio.
           </p>
         </div>
+
+        <RescissionForm />
 
         <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-6 shadow-lg">
           <h2 className="text-xl font-semibold">Status do projeto</h2>
