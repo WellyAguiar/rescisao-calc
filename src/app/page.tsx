@@ -21,15 +21,6 @@ export default function Home() {
 
         <RescissionForm />
 
-        <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-6 shadow-lg">
-          <h2 className="text-xl font-semibold">Status do projeto</h2>
-
-          <p className="mt-3 text-slate-300">
-            A aplicação está em fase inicial. A próxima etapa será criar o
-            formulário de entrada de dados.
-          </p>
-        </div>
-
         <div className="rounded-2xl border border-yellow-500/30 bg-yellow-500/10 p-6">
           <h2 className="text-xl font-semibold text-yellow-200">
             Aviso importante
