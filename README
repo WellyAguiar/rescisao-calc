@@ -1,0 +1,29 @@
+# Calculadora de Rescisão
+
+Aplicação web para simular valores básicos de rescisão trabalhista no Brasil.
+
+## Objetivo
+
+Este projeto foi criado como estudo prático de desenvolvimento frontend com regras de negócio reais, validação de dados, documentação e testes automatizados.
+
+## Status
+
+Em planejamento.
+
+## Stack prevista
+
+- Next.js
+- TypeScript
+- CSS Modules
+- Jest ou Vitest
+- React Testing Library'
+
+## Documentação
+
+- [Product Requirements](./docs/PRODUCT_REQUIREMENTS.md)
+- [Roadmap](./docs/ROADMAP.md)
+- [Business Rules](./docs/BUSINESS_RULES.md)
+
+## Aviso
+
+Esta aplicação fornece apenas uma simulação educacional. Os cálculos podem variar conforme descontos legais, regras específicas do contrato, acordos coletivos e orientação profissional.
