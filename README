@@ -14,7 +14,8 @@ Em planejamento.
 
 - Next.js
 - TypeScript
-- CSS Modules
+- Tailwind CSS
+- EsLint
 - Jest ou Vitest
 - React Testing Library'
 
@@ -23,6 +24,20 @@ Em planejamento.
 - [Product Requirements](./docs/PRODUCT_REQUIREMENTS.md)
 - [Roadmap](./docs/ROADMAP.md)
 - [Business Rules](./docs/BUSINESS_RULES.md)
+
+## Rodando localmente
+
+Instale as dependências:
+
+- npm install
+
+Inicie o servidor de desenvolvimento:
+
+- npm run dev
+
+Acesse:
+
+http://localhost:3000
 
 ## Aviso
 
