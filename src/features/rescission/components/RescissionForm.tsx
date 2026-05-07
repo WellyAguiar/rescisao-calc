@@ -1,6 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { 
+  Calculator, 
+  Calendar, 
+  DollarSign, 
+  Briefcase, 
+  AlertCircle,
+  Clock
+} from "lucide-react";
 import type { 
     NoticeType, 
     TerminationReason,
@@ -37,7 +45,6 @@ export function RescissionForm() {
 
         const formData = new FormData(event.currentTarget);
 
-        
         const validation = validateRescissionForm({
             salary: Number(formData.get("salary")),
             admissionDate: String(formData.get("admissionDate") ?? ""),
@@ -54,178 +61,194 @@ export function RescissionForm() {
             return;
         }
 
-        
         const calculationResult = calculateRescission(validation.data);
-
         setResult(calculationResult);
     }
 
   return (
-    <>
+    <div className="space-y-8">
         <form 
             onSubmit={handleSubmit}
             noValidate
-            className="rounded-2xl border border-slate-800 bg-slate-900/70 p-6 shadow-lg"
+            className="rounded-3xl border border-slate-800 bg-slate-900/40 backdrop-blur-xl p-8 shadow-2xl transition-all"
         >
-
-        <div className="space-y-2">
-            <h2 className="text-2xl font-semibold text-slate-100">
-            Dados da rescisão
-            </h2>
-
-            <p className="text-sm text-slate-400">
-            Preencha as informações básicas do contrato para iniciar a simulação.
-            </p>
-        </div>
-
-        <div className="mt-6 grid gap-5">
-            <div className="grid gap-2">
-            <label htmlFor="salary" className="text-sm font-medium text-slate-200">
-                Salário bruto mensal
-            </label>
-
-            <input
-                id="salary"
-                name="salary"
-                type="number"
-                min="0"
-                step="0.01"
-                placeholder="Ex: 2500.00"
-                className="rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-slate-100 outline-none transition focus:border-cyan-400"
-            />
-
-            {errors.salary ? (
-                <p className="text-sm text-red-300">{errors.salary}</p>
-                ) : null}
+            <div className="mb-8 border-b border-slate-800/50 pb-6">
+                <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-500/10 text-cyan-400">
+                        <Briefcase size={22} />
+                    </div>
+                    <div>
+                        <h2 className="text-2xl font-bold text-slate-100">
+                            Dados do Contrato
+                        </h2>
+                        <p className="text-sm text-slate-400">
+                            Preencha as informações básicas para iniciar a simulação.
+                        </p>
+                    </div>
+                </div>
             </div>
 
-            <div className="grid gap-2">
-            <label
-                htmlFor="admissionDate"
-                className="text-sm font-medium text-slate-200"
-            >
-                Data de admissão
-            </label>
+            <div className="grid gap-6 md:grid-cols-2">
+                <div className="space-y-2">
+                    <label htmlFor="salary" className="text-sm font-semibold text-slate-300">
+                        Salário bruto mensal
+                    </label>
+                    <div className="group relative">
+                        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 transition-colors group-focus-within:text-cyan-400">
+                            <DollarSign size={18} />
+                        </div>
+                        <input
+                            id="salary"
+                            name="salary"
+                            type="number"
+                            min="0"
+                            step="0.01"
+                            placeholder="0,00"
+                            className="w-full rounded-xl border border-slate-700 bg-slate-950/50 pl-11 pr-4 py-3 text-slate-100 outline-none ring-cyan-500/20 transition focus:border-cyan-500 focus:ring-4"
+                        />
+                    </div>
+                    {errors.salary && (
+                        <div className="flex items-center gap-1.5 text-xs text-red-400">
+                            <AlertCircle size={14} />
+                            <span>{errors.salary}</span>
+                        </div>
+                    )}
+                </div>
 
-            <input
-                id="admissionDate"
-                name="admissionDate"
-                type="date"
-                className="rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-slate-100 outline-none transition focus:border-cyan-400"
-            />
+                <div className="space-y-2">
+                    <label htmlFor="admissionDate" className="text-sm font-semibold text-slate-300">
+                        Data de admissão
+                    </label>
+                    <div className="group relative">
+                        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 transition-colors group-focus-within:text-cyan-400">
+                            <Calendar size={18} />
+                        </div>
+                        <input
+                            id="admissionDate"
+                            name="admissionDate"
+                            type="date"
+                            className="w-full rounded-xl border border-slate-700 bg-slate-950/50 pl-11 pr-4 py-3 text-slate-100 outline-none ring-cyan-500/20 transition focus:border-cyan-500 focus:ring-4"
+                        />
+                    </div>
+                    {errors.admissionDate && (
+                        <div className="flex items-center gap-1.5 text-xs text-red-400">
+                            <AlertCircle size={14} />
+                            <span>{errors.admissionDate}</span>
+                        </div>
+                    )}
+                </div>
+                
+                <div className="space-y-2">
+                    <label htmlFor="currentVacationPeriodStartDate" className="text-sm font-semibold text-slate-300">
+                        Início do período aquisitivo atual
+                    </label>
+                    <div className="group relative">
+                        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 transition-colors group-focus-within:text-cyan-400">
+                            <Clock size={18} />
+                        </div>
+                        <input
+                            id="currentVacationPeriodStartDate"
+                            name="currentVacationPeriodStartDate"
+                            type="date"
+                            className="w-full rounded-xl border border-slate-700 bg-slate-950/50 pl-11 pr-4 py-3 text-slate-100 outline-none ring-cyan-500/20 transition focus:border-cyan-500 focus:ring-4"
+                        />
+                    </div>
+                    {errors.currentVacationPeriodStartDate && (
+                        <div className="flex items-center gap-1.5 text-xs text-red-400">
+                            <AlertCircle size={14} />
+                            <span>{errors.currentVacationPeriodStartDate}</span>
+                        </div>
+                    )}
+                </div>
 
-            {errors.admissionDate ? (
-                <p className="text-sm text-red-300">{errors.admissionDate}</p>
-                ) : null}
-            </div>
-            
-            <div className="grid gap-2">
-                <label
-                    htmlFor="currentVacationPeriodStartDate"
-                    className="text-sm font-medium text-slate-200"
-                >
-                    Início do período aquisitivo atual
-                </label>
+                <div className="space-y-2">
+                    <label htmlFor="terminationDate" className="text-sm font-semibold text-slate-300">
+                        Data de desligamento
+                    </label>
+                    <div className="group relative">
+                        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 transition-colors group-focus-within:text-cyan-400">
+                            <Calendar size={18} />
+                        </div>
+                        <input
+                            id="terminationDate"
+                            name="terminationDate"
+                            type="date"
+                            className="w-full rounded-xl border border-slate-700 bg-slate-950/50 pl-11 pr-4 py-3 text-slate-100 outline-none ring-cyan-500/20 transition focus:border-cyan-500 focus:ring-4"
+                        />
+                    </div>
+                    {errors.terminationDate && (
+                        <div className="flex items-center gap-1.5 text-xs text-red-400">
+                            <AlertCircle size={14} />
+                            <span>{errors.terminationDate}</span>
+                        </div>
+                    )}
+                </div>
 
-                <input
-                    id="currentVacationPeriodStartDate"
-                    name="currentVacationPeriodStartDate"
-                    type="date"
-                    className="rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-slate-100 outline-none transition focus:border-cyan-400"
-                />
+                <div className="space-y-2">
+                    <label htmlFor="terminationReason" className="text-sm font-semibold text-slate-300">
+                        Motivo da rescisão
+                    </label>
+                    <div className="group relative">
+                        <select
+                            id="terminationReason"
+                            name="terminationReason"
+                            className="w-full appearance-none rounded-xl border border-slate-700 bg-slate-950/50 px-4 py-3 text-slate-100 outline-none ring-cyan-500/20 transition focus:border-cyan-500 focus:ring-4"
+                            defaultValue=""
+                        >
+                            <option value="" disabled>Selecione uma opção</option>
+                            {terminationReasonOptions.map((option) => (
+                                <option key={option.value} value={option.value}>
+                                    {option.label}
+                                </option>
+                            ))}
+                        </select>
+                        <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-cyan-400">
+                            <Briefcase size={18} />
+                        </div>
+                    </div>
+                    {errors.noticeType && (
+                        <div className="flex items-center gap-1.5 text-xs text-red-400">
+                            <AlertCircle size={14} />
+                            <span>{errors.noticeType}</span>
+                        </div>
+                    )}
+                </div>
 
-                {errors.currentVacationPeriodStartDate ? (
-                    <p className="text-sm text-red-300">
-                    {errors.currentVacationPeriodStartDate}
-                    </p>
-                ) : null}
-            </div>
-
-            <div className="grid gap-2">
-            <label
-                htmlFor="terminationDate"
-                className="text-sm font-medium text-slate-200"
-            >
-                Data de desligamento
-            </label>
-
-            <input
-                id="terminationDate"
-                name="terminationDate"
-                type="date"
-                className="rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-slate-100 outline-none transition focus:border-cyan-400"
-            />
-            {errors.terminationDate ? (
-                <p className="text-sm text-red-300">{errors.terminationDate}</p>
-                ) : null}
-            </div>
-
-            <div className="grid gap-2">
-            <label
-                htmlFor="terminationReason"
-                className="text-sm font-medium text-slate-200"
-            >
-                Motivo da rescisão
-            </label>
-
-            <select
-                id="terminationReason"
-                name="terminationReason"
-                className="rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-slate-100 outline-none transition focus:border-cyan-400"
-                defaultValue=""
-            >
-                <option value="" disabled>
-                Selecione uma opção
-                </option>
-
-                {terminationReasonOptions.map((option) => (
-                    <option key={option.value} value={option.value}>
-                        {option.label}
-                    </option>
-                ))}
-            </select>
-
-            {errors.noticeType ? (
-                <p className="text-sm text-red-300">{errors.noticeType}</p>
-            ) : null}
-
-            </div>
-
-            <div className="grid gap-2">
-            <label
-                htmlFor="noticeType"
-                className="text-sm font-medium text-slate-200"
-            >
-                Tipo de aviso prévio
-            </label>
-
-            <select
-                id="noticeType"
-                name="noticeType"
-                className="rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-slate-100 outline-none transition focus:border-cyan-400"
-                defaultValue=""
-            >
-                <option value="" disabled>
-                Selecione uma opção
-                </option>
-                {noticeTypeOptions.map((option) => (
-                <option key={option.value} value={option.value}>
-                    {option.label}
-                </option>
-                ))}
-            </select>
+                <div className="space-y-2">
+                    <label htmlFor="noticeType" className="text-sm font-semibold text-slate-300">
+                        Tipo de aviso prévio
+                    </label>
+                    <div className="group relative">
+                        <select
+                            id="noticeType"
+                            name="noticeType"
+                            className="w-full appearance-none rounded-xl border border-slate-700 bg-slate-950/50 px-4 py-3 text-slate-100 outline-none ring-cyan-500/20 transition focus:border-cyan-500 focus:ring-4"
+                            defaultValue=""
+                        >
+                            <option value="" disabled>Selecione uma opção</option>
+                            {noticeTypeOptions.map((option) => (
+                                <option key={option.value} value={option.value}>
+                                    {option.label}
+                                </option>
+                            ))}
+                        </select>
+                        <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-cyan-400">
+                            <Calculator size={18} />
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <button
-            type="submit"
-            className="mt-2 rounded-lg bg-cyan-400 px-5 py-3 font-semibold text-slate-950 transition hover:bg-cyan-300"
+                type="submit"
+                className="mt-10 flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 py-4 font-bold text-white shadow-lg shadow-cyan-500/20 transition-all hover:scale-[1.02] hover:shadow-cyan-500/30 active:scale-[0.98]"
             >
-            Calcular rescisão
+                <Calculator size={20} />
+                Calcular Rescisão
             </button>
-        </div>
         </form>
 
-        {result ? <RescissionResult result={result} /> : null}
-    </>
+        {result && <RescissionResult result={result} />}
+    </div>
   );
 }
