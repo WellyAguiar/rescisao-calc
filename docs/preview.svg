@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 540" width="100%" height="100%">
+  <defs>
+    <linearGradient id="canvasBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090612" />
+      <stop offset="100%" stop-color="#120A24" />
+    </linearGradient>
+    <linearGradient id="cardBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#17102B" />
+      <stop offset="100%" stop-color="#0E091B" />
+    </linearGradient>
+    <linearGradient id="btnGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#9333EA" />
+      <stop offset="100%" stop-color="#C084FC" />
+    </linearGradient>
+    <style>
+      .mono { font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace; }
+      .sans { font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="540" rx="14" fill="url(#canvasBg)" stroke="#4C1D95" stroke-width="1.5" />
+  <rect x="0" y="0" width="1200" height="44" rx="14" fill="#120B24" />
+  <rect x="0" y="30" width="1200" height="14" fill="#120B24" />
+  <line x1="0" y1="44" x2="1200" y2="44" stroke="#3B0764" stroke-width="1" />
+  <circle cx="24" cy="22" r="5.5" fill="#EF4444" opacity="0.85" />
+  <circle cx="42" cy="22" r="5.5" fill="#F59E0B" opacity="0.85" />
+  <circle cx="60" cy="22" r="5.5" fill="#10B981" opacity="0.85" />
+  <text x="600" y="27" text-anchor="middle" class="mono" font-size="12" fill="#A78BFA">quantovoureceber.vercel.app // Simulador Trabalhista CLT</text>
+
+  <!-- Left Column: Form -->
+  <g transform="translate(48, 76)">
+    <rect width="520" height="424" rx="12" fill="url(#cardBg)" stroke="#3B0764" stroke-width="1" />
+    <text x="28" y="38" class="sans" font-size="16" font-weight="700" fill="#F8FAFC">Dados do Contrato CLT</text>
+    <text x="28" y="58" class="sans" font-size="12" fill="#94A3B8">Validação determinística via Discriminated Unions</text>
+
+    <text x="28" y="96" class="sans" font-size="12" font-weight="600" fill="#C4B5FD">Último Salário Bruto</text>
+    <rect x="28" y="106" width="464" height="40" rx="8" fill="#0B0714" stroke="#581C87" />
+    <text x="44" y="131" class="mono" font-size="14" fill="#F8FAFC">R$ 6.500,00</text>
+
+    <text x="28" y="174" class="sans" font-size="12" font-weight="600" fill="#C4B5FD">Admissão</text>
+    <rect x="28" y="184" width="220" height="40" rx="8" fill="#0B0714" stroke="#4C1D95" />
+    <text x="44" y="209" class="mono" font-size="13" fill="#E2E8F0">10/01/2023</text>
+
+    <text x="272" y="174" class="sans" font-size="12" font-weight="600" fill="#C4B5FD">Desligamento</text>
+    <rect x="272" y="184" width="220" height="40" rx="8" fill="#0B0714" stroke="#4C1D95" />
+    <text x="288" y="209" class="mono" font-size="13" fill="#E2E8F0">18/05/2026</text>
+
+    <text x="28" y="252" class="sans" font-size="12" font-weight="600" fill="#C4B5FD">Motivo da Rescisão &amp; Aviso Prévio</text>
+    <rect x="28" y="262" width="464" height="40" rx="8" fill="#0B0714" stroke="#4C1D95" />
+    <text x="44" y="287" class="sans" font-size="13" fill="#E2E8F0">Dispensa sem Justa Causa • Aviso Indenizado (39 dias)</text>
+
+    <rect x="28" y="346" width="464" height="46" rx="9" fill="url(#btnGrad)" />
+    <text x="260" y="374" text-anchor="middle" class="mono" font-size="13" font-weight="700" fill="#FFFFFF">CALCULAR VERBAS RESCISÓRIAS</text>
+  </g>
+
+  <!-- Right Column: Result Breakdown -->
+  <g transform="translate(600, 76)">
+    <rect width="552" height="424" rx="12" fill="url(#cardBg)" stroke="#6B21A8" stroke-width="1.2" />
+    <text x="32" y="38" class="mono" font-size="12" font-weight="600" fill="#C084FC">// RESULTADO ESTIMADO BRUTO</text>
+    <text x="32" y="82" class="mono" font-size="36" font-weight="800" fill="#FFFFFF">R$ 23.833,33</text>
+    <line x1="32" y1="104" x2="520" y2="104" stroke="#3B0764" />
+
+    <text x="32" y="142" class="sans" font-size="13.5" fill="#CBD5E1">Saldo de Salário (18 dias)</text>
+    <text x="520" y="142" text-anchor="end" class="mono" font-size="13.5" fill="#F8FAFC">R$ 3.900,00</text>
+
+    <text x="32" y="186" class="sans" font-size="13.5" fill="#CBD5E1">Aviso Prévio Indenizado (Lei 12.506 • 39d)</text>
+    <text x="520" y="186" text-anchor="end" class="mono" font-size="13.5" fill="#F8FAFC">R$ 8.450,00</text>
+
+    <text x="32" y="230" class="sans" font-size="13.5" fill="#CBD5E1">13º Salário Proporcional (5/12 avos)</text>
+    <text x="520" y="230" text-anchor="end" class="mono" font-size="13.5" fill="#F8FAFC">R$ 2.708,33</text>
+
+    <text x="32" y="274" class="sans" font-size="13.5" fill="#CBD5E1">Férias Vencidas + Proporcionais</text>
+    <text x="520" y="274" text-anchor="end" class="mono" font-size="13.5" fill="#F8FAFC">R$ 6.581,25</text>
+
+    <text x="32" y="318" class="sans" font-size="13.5" fill="#CBD5E1">Terço Constitucional de Férias (1/3)</text>
+    <text x="520" y="318" text-anchor="end" class="mono" font-size="13.5" fill="#C084FC">R$ 2.193,75</text>
+
+    <rect x="32" y="354" width="488" height="42" rx="8" fill="#150D2A" stroke="#4C1D95" />
+    <text x="48" y="380" class="mono" font-size="11" fill="#34D399">✓ 8 módulos puros validados com cobertura unitária Vitest</text>
+  </g>
+</svg>

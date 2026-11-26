@@ -9,6 +9,12 @@
 
 Aplicação web em **Next.js 16 + TypeScript + Vitest** projetada para simular verbas rescisórias da CLT (Consolidação das Leis do Trabalho) com precisão, tipagem estrita e desacoplamento total entre domínio e interface.
 
+<br />
+
+<div align="center">
+  <img src="./docs/preview.svg" width="100%" alt="Rescisão Calc — Interface do Simulador CLT" />
+</div>
+
 ---
 
 ## Arquitetura & Engenharia de Software
