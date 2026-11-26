@@ -1,9 +1,13 @@
-# Calculadora de Rescisão CLT
+<div align="center">
+  <img src="./docs/banner.svg" width="100%" alt="Rescisão Calc — CLT Calculation Engine" />
+  <br />
+  <br />
+  <a href="https://quantovoureceber.vercel.app"><img src="https://img.shields.io/badge/LIVE_DEMO-ACESSAR_APP-A855F7?style=for-the-badge&labelColor=0B0714&logo=vercel&logoColor=F8FAFC" alt="Live Demo" /></a>
+</div>
+
+<br />
 
 Aplicação web em **Next.js 16 + TypeScript + Vitest** projetada para simular verbas rescisórias da CLT (Consolidação das Leis do Trabalho) com precisão, tipagem estrita e desacoplamento total entre domínio e interface.
-
-- **Demo em Produção:** [quantovoureceber.vercel.app](https://quantovoureceber.vercel.app)
-- **Stack:** Next.js 16, React 19, TypeScript 5, Tailwind CSS 4, Vitest 4
 
 ---
 
